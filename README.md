@@ -6,7 +6,7 @@ Welcome to my centralized repository for my studies at **New Mexico State Univer
 
 | Course / Subject | Folder Link | Description |
 | :--- | :--- | :--- |
-| **Software Technology II - Python** | [`software-tech-ii/`](./python-software-tech-ii) | Advanced Python programming, software design patterns, and application development. |
+| **Software Technology II - Python** | [`ICT362PY/`](./python-software-tech-ii) | Advanced Python programming, software design patterns, and application development. |
 
 ---
 
