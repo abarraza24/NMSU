@@ -15,9 +15,8 @@
 # Examine subsets of data from particular dates or locations.
 # Sort observation to find patterns
 
-observations = [
-    "deer", "rabbit","fox", "deer", "bear", "coyote", 
-    "rabbit", "deer", "hawk", "fox"
+observations = [ "deer","rabbit","fox","deer","bear","coyote",
+                "rabbit","deer", "hawk","fox",
 ]
 
 # Reasearchers collected three new observations
@@ -40,7 +39,7 @@ duplicate = observations.pop()
 # First five observations came from Camera Station A.
 # station_a stores  animals 0-4 five is excluded
 station_a = observations[:5]
-print(station_a)
+print(f'Station_A Observations {station_a}')
 
 # The last three observations came from Camera Station C
 station_c = observations[-3:]
