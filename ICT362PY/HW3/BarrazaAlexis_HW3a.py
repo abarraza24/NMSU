@@ -5,6 +5,10 @@ Date: August 26, 2026
 Course: ICT 362 - Software Technology II
 
 Assignment: Working with Logic statements and Dictionaries
+
+Description:
+    The purpose of this program is to work with logic operators, for loops and dictionaries.
+    It converts student number grades into a letter grade.
 """
 
 # Appendix A class Grades Dictionary 
