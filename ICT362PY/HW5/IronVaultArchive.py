@@ -84,120 +84,124 @@ def validate_email(email_str):
 
     return re.match(pattern, email_str) is not None
 
-# IronValutEntry dictionary to hold validated data 
-ironVaultEntry = {}
+def main():
+    # IronValutEntry dictionary to hold validated data 
+    ironVaultEntry = {}
 
-#First name length requirements
-min = 2
-max = 12
+    #First name length requirements
+    min = 2
+    max = 12
 
-# Last name length requirements
-lastMin = 4
-lastMax = 15
+    # Last name length requirements
+    lastMin = 4
+    lastMax = 15
 
-Firstname_prompt = f"Please enter your first name, minimun of {min} letters max of {max}\n"
+    Firstname_prompt = f"Please enter your first name, minimun of {min} letters max of {max}\n"
 
-Lastname_prompt = f"Please enter your last name, minimum of {lastMin} and max of {lastMax}\n"
+    Lastname_prompt = f"Please enter your last name, minimum of {lastMin} and max of {lastMax}\n"
 
-# Collect and validate first name
-while True:
-    
-    # Ask the user for their first name
-    firstname = input(Firstname_prompt)
-    
-    # Call validate_string and check if the name is valid
-    if validate_string(min, max, firstname):
+    # Collect and validate first name
+    while True:
         
-        # Add the valid first name to the dictionary
-        ironVaultEntry["FirstName"] = firstname
+        # Ask the user for their first name
+        firstname = input(Firstname_prompt)
         
-        # Exit the loop once  a valid first name is entered
-        break
-    else:
-        Firstname_prompt = (
-            f"Your entry was less then {min} or more than {max}. "
-            f"Please re enter you first name\n"
-        )
-
-# Collect and validate last name
-while True:
-    
-    # Ask the user for their last name
-    lastName = input(Lastname_prompt)
-    
-    # Call validate_string and check if the name is valid
-    if validate_string(lastMin, lastMax, lastName):
-        
-        # Add the valid first name to the dictionary
-        ironVaultEntry["LastName"] = lastName
-        
-        # Exit the loop once  a valid first name is entered
-        break
-    else:
-        Lastname_prompt = (
-            f"Your entry was less then {lastMin} or more than {lastMax}. "
-            f"Please re enter you last name\n"
-        )
-        
-# Collect and validate onboard date
-while True:
-    onboardDate = input("Please enter the driver's onboard date in mm/dd/yyyy format: ")
-    
-    # Call validate_date
-    if validate_date(onboardDate):
-        
-        # Add the valid date to the dictionary
-        ironVaultEntry["OnboardDate"] = onboardDate
-        
-        # Exit the loop once a valid date is entered
-        break
-    else:
-        print("Invalid date. Please enter a real date. Using mm/dd/yyyy.  ")
-
-while True:
-    
-    phoneNumber = input (
-        "Please enter the driver's phone number "
-        "(Ex: 505-555-1234, (505) 555-1234, or 505.555.1234):\n "
-    )
-       # Call validate_phone and check if the phone number is valid
-    if validate_phone(phoneNumber):
-
-        # Add the valid phone number to the dictionary
-        ironVaultEntry["Phone"] = phoneNumber
-
-        # Exit the loop once a valid phone number is entered
-        break
-
-    else:
-        print(
-            "Invalid phone number. Please re-enter the phone number."
-            "(Ex: 505-555-1234, (505) 555-1234, or 505.555.1234):\n"
-        )
-
-# Collect and validate email
-while True:
-    
-    emailAddress = input(
-                "Please enter the driver's email address "
-                "(example: name@company.com):\n "
-            )
-    # Call validate_email and check if the email is valid
-    if validate_email(emailAddress):
-        
-        # Add the valid email to the dictionary
-        ironVaultEntry["Email"] = emailAddress
-        
-        # Exit the loop once a valid email is created
-        break
-    else:
-        print(
-            "Invalid email. Please re-enter the email address "
-            "example: name@company.com)"
+        # Call validate_string and check if the name is valid
+        if validate_string(min, max, firstname):
+            
+            # Add the valid first name to the dictionary
+            ironVaultEntry["FirstName"] = firstname
+            
+            # Exit the loop once  a valid first name is entered
+            break
+        else:
+            Firstname_prompt = (
+                f"Your entry was less then {min} or more than {max}. "
+                f"Please re enter you first name\n"
             )
 
-# Print the final populated dictionary
-print("\n" + "=" * 40)
-print("Iron Vault Driver Record")
-print("=" * 40)
-print(ironVaultEntry)
+    # Collect and validate last name
+    while True:
+        
+        # Ask the user for their last name
+        lastName = input(Lastname_prompt)
+        
+        # Call validate_string and check if the name is valid
+        if validate_string(lastMin, lastMax, lastName):
+            
+            # Add the valid first name to the dictionary
+            ironVaultEntry["LastName"] = lastName
+            
+            # Exit the loop once  a valid first name is entered
+            break
+        else:
+            Lastname_prompt = (
+                f"Your entry was less then {lastMin} or more than {lastMax}. "
+                f"Please re enter you last name\n"
+            )
+            
+    # Collect and validate onboard date
+    while True:
+        onboardDate = input("Please enter the driver's onboard date in mm/dd/yyyy format: ")
+        
+        # Call validate_date
+        if validate_date(onboardDate):
+            
+            # Add the valid date to the dictionary
+            ironVaultEntry["OnboardDate"] = onboardDate
+            
+            # Exit the loop once a valid date is entered
+            break
+        else:
+            print("Invalid date. Please enter a real date. Using mm/dd/yyyy.  ")
+
+    while True:
+        
+        phoneNumber = input (
+            "Please enter the driver's phone number "
+            "(Ex: 505-555-1234, (505) 555-1234, or 505.555.1234):\n "
+        )
+        # Call validate_phone and check if the phone number is valid
+        if validate_phone(phoneNumber):
+
+            # Add the valid phone number to the dictionary
+            ironVaultEntry["Phone"] = phoneNumber
+
+            # Exit the loop once a valid phone number is entered
+            break
+
+        else:
+            print(
+                "Invalid phone number. Please re-enter the phone number."
+                "(Ex: 505-555-1234, (505) 555-1234, or 505.555.1234):\n"
+            )
+
+    # Collect and validate email
+    while True:
+        
+        emailAddress = input(
+                    "Please enter the driver's email address "
+                    "(example: name@company.com):\n "
+                )
+        # Call validate_email and check if the email is valid
+        if validate_email(emailAddress):
+            
+            # Add the valid email to the dictionary
+            ironVaultEntry["Email"] = emailAddress
+            
+            # Exit the loop once a valid email is created
+            break
+        else:
+            print(
+                "Invalid email. Please re-enter the email address "
+                "example: name@company.com)"
+                )
+
+    # Print the final populated dictionary
+    print("\n" + "=" * 40)
+    print("Iron Vault Driver Record")
+    print("=" * 40)
+    print(ironVaultEntry)
+
+if __name__ == "__main__":
+    main()
