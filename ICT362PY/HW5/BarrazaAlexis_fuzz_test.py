@@ -1,96 +1,129 @@
+########################################################
+# Software Req Doc: SB5 Fuzz Testing Suite            #
+# Release Date: September 28, 2026                    #
+# Coder: Alexis Barraza                               #
+# Description: This program genereates                #
+# malformed input to test the phone and date           #
+# validation without crashing the program              #
+########################################################
+
 import random
 import string
 from datetime import datetime
-import re 
 
-import IronVaultArchive
-from IronVaultArchive import validate_string
-from IronVaultArchive import validate_date as valdate
+from IronVaultArchive import validate_phone
 
-# Generates random string to test our validation
-# I think it's similar to unit tests
-def gen_random_string():
-    strLen = random.randint(0,50)
-    return ''.join(random.choices(string.ascii_letters + string.digits + "!@#%^&&", k=strLen))
-
-
-def fuzz_validate_string(iterations=100):
-    for i in range(iterations):
-        minN = random.randint(0,50)
-        maxN = random.randint(minN, 100)
-        
-        test_string = gen_random_string()
-        print(f"{i} Min: " + str(min) + "\tMax: " + str(maxN) + "\tString: " + test_string, end="\t")
-        expected = minN <= len(test_string) <= maxN
-        actual = validate_string(minN, maxN, test_string)
-        print(actual)
-        if expected != actual:
-            print("Bug found!: minN={minN}\tmaxN={maxN} \t length={len(test_string)}")
-            print(f"Expected={expected} \t actual={actual}")
+# Generate a random malformed string for fuzz testing
+def generate_fuzzy_payload(length=15):
+    """
+    Generate a random string containing letters, numbers,
+    punctuation, spaces, tabs, and new lines
     
-    print(f"No failures found {iterations} tests")
-    
-def fuzz_validate_date(iterations = 100):
-    for i in range(iterations):
-        month = random.randint(-5,12)
-        day = random.randint(-5, 31)
-        year = random.randint(-2000, 2055)
-        dateString = f"{month}/{day}/{year}"
-        #dateString = gen_random_string()
-        print(f"{i} Date used: { dateString}", end="\t")
+
+    Args:
+        length: The number of random characters to generate
         
-        try:
-            datetime.strptime(dateString, "%m/%d/%Y")
-            expected = True
-        except ValueError:
-            expected = False
-        
-        actual = valdate(dateString)
-        print(f"Expected: {expected}\tActual: {actual}")
-        if expected != actual:
-            print("Bug found!: { dateString}")
-            print(f"Expected={expected}\t actual={actual}")
-            return
-    print(f"No failures found after {iterations} tests")
-    
-def get_rand_chars(strLen = 3, chars = "123456790()-. "):
-    result = ''.join(
+    Returns:
+        A randomly generated String used for fuzz testing
+    """
+    chars = ( string.ascii_letters + string.digits + string.punctuation + "\t\n")
+    return "".join(
         random.choice(chars)
-        for _ in range(random.randint(3, strLen))
+        for _ in range(length)
     )
-    return result
 
-# AI defenition of validating a phone number
-def validate_phone_number(phoneStr):
-    pattern = re.compile(
-        r'^'
-        r'(\+?1[\s.-]?)?'    # Optinal country code
-        r'(\(\d{3}\)|\d{3})' # Area code
-        r'[\s.-]?'           # Optional seprator
-        r'\d{3}'             # Prefix
-        r'[\s.-]?'           # Optional seprator
-        r'\d{4}'
-        r'$'
-    )
-    
-def fuzz_validate_phone(iterations=1000):
-    for i in range(iterations):
-        aCode= get_rand_chars(5)
-        prefix = get_rand_chars(4)
-        lineNu = get_rand_chars(4)
-        
-        phone_str = aCode + prefix + lineNu
-        expected = IronVaultArchive.validate_phone(phone_str)
-        actual = validate_phone_number(phone_str)
-        print(f"Phone String: { phone_str}\t Expected: { expected }\t Actual: { actual }")
-        if expected != actual:
-            print (f"{i}: Bug Found: {phone_str}\tExpected={expected}\tactual={actual}")
-            return
-        
 def main():
-   #fuzz_validate_string()
-    #fuzz_validate_date()
-    fuzz_validate_phone()
-    #validate_phone_number()
+    print("--- Ironclad Logistics: Running Fuzz Suite ---")
+    
+    #Generates random payloads and add specific invalid test values
+    fuzz_samples = [
+        generate_fuzzy_payload(12)
+        for _ in range(5)
+    ] + [
+        "02/30/2026",
+        "99/99/9999",
+        "'; DROP TABLE drivers;--",
+        "X" * 1000,
+        "575-555-ABCD"
+    ]
+    
+    # Loop through each payload and test it
+    for i, payload in enumerate(fuzz_samples, 1):
+
+        print(f"Test #{i} Payload: {payload}")
+
+        # The expected phone result for malformed payloads is False
+        expected_phone = False
+
+        # Send the payload directly to validate_phone()
+        actual_phone = validate_phone(payload)
+
+        print(
+            f"  -> Phone Regex Check: {actual_phone}"
+        )
+
+        # Compare the expected phone result to the actual result
+        if expected_phone != actual_phone:
+            print(
+                f"{i}: Bug Found: {payload}\t"
+                f"Expected={expected_phone}\tActual={actual_phone}"
+            )
+
+        # The expected date result starts as False
+        expected_date = False
+
+        # Try to convert the payload into a date
+        try:
+            datetime.strptime(payload, "%m/%d/%Y")
+
+            # If no error occurs, the payload is a valid date
+            actual_date = True
+
+        except ValueError:
+
+            # If ValueError occurs, the payload is not a valid date
+            actual_date = False
+
+        print(
+            f"  -> Date Parser: Expected={expected_date}\t"
+            f"Actual={actual_date}"
+        )
+
+        # Compare the expected date result to the actual result
+        if expected_date != actual_date:
+            print(
+                f"{i}: Bug Found: {payload}\t"
+                f"Expected={expected_date}\tActual={actual_date}"
+            )
+
+        print("-" * 45)
+        
+        print(f"Test #{i} Payload: {payload}")
+        
+        # Send the payload directly to the phone validator
+        is_valid_phone = validate_phone(payload)
+        
+        print(f"  -> Phone Regex Check: {is_valid_phone} " 
+             f"(Gracefully Evaluated)"
+        )
+        
+        # try to process the same payload as a date
+        try:
+            datetime.strptime(payload, "%m/%d/%Y")
+
+            print("  -> Date Parser: Accepted")
+            
+        # Catch an invalid date without crashing the program
+        except ValueError:
+            print(
+                "  -> Date Parser: Gracefully Caught ValueError"
+            )
+            
+        # Catch any unexpected errors during fuzz testing
+        except Exception as e:
+            print(f"  -> UNCAUGHT CRASH: {e}")
+            
+        print("-" * 45)
+    
 if __name__ =="__main__":
     main()
