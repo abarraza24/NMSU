@@ -2,7 +2,8 @@
 __pycache__/
 *.py[codz]
 *$py.class
-
+# Nmsu 
+ICT362PY/Project1/Brewsite/
 # C extensions
 *.so
 
