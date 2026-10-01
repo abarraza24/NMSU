@@ -4,6 +4,9 @@ __pycache__/
 *$py.class
 # Nmsu 
 ICT362PY/Project1/Brewsite/
+ICT362PY/Project1/Brewsite/
+ICT362PY/Project1/brewsite_venv/
+.gitignore
 # C extensions
 *.so
 
