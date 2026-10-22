@@ -1,0 +1,13 @@
+Chopping wood makes us better programmers
+
+I recently bought a house with a wood stove. The house is a fixer-upper, but the wood stove works wonderfully. It was the only thing that kept us warm the first two weeks after we moved in, after an electrical issue put our heat pump out of commission for a while. Chopping wood is a great respite from programming. It simplifies my world into one simple goal: chop this single piece of wood into two pieces. No matter how difficult or abstract my programming work has been, I get to live in a moment where just one single, concrete thing matters.
+
+Recently I wanted to share some Python cheat sheets I’d been working on, but I occasionally suffer from impostor syndrome as much as anyone else. I was nervous to share my work. The post started to get positive feedback, but I know enough not to get sucked into minute-by-minute refreshes. Heading outside to split a few rounds was a perfect way to not think about other people’s reactions for a bit. There’s something satisfying about doing work that so immediately benefits my family as well. I write this with the sweet smell of freshly split spruce and hemlock in the air, and I wonder if one of these pieces will keep us warm on Christmas morning.
+
+I like splitting easy rounds that fly apart on the first swing, and I like working on knotted rounds that take ten or fifteen swings to start splitting. It’s like a puzzle - there’s no crack in the wood to guide placement of the splitting edge, so I just pick an angle and start swinging. If no cracks develop, I reposition the round and try from another angle. Finally a small crack appears, and then the round gives way in the next few swings. It’s pretty satisfying to take ten swings that do nothing and then split a big round in one swing, with fresh sap filling the air around me. It’s just like working persistently away at a seemingly intractable bug, and then suddenly gaining a new clarity on how an entire project works.
+
+I could go on about the art of splitting wood, and the joy of developing muscle memory in learning to place the splitting edge ever more precisely. About learning to read the wood better and better, knowing which species will split in which ways. About the connection with thousands of years of people keeping their homes warm by burning wood. About the larger process of going to the woods to cut up fallen trees on a quiet morning, then bringing the rounds back home. But if you have any purely non-technical, outdoors-focused pursuits you probably know the feeling.
+
+Happy chopping, and happy programming!
+Written on March 18, 2016 
+Eric Matthes

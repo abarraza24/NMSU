@@ -1,0 +1,27 @@
+In Python you can store items without declaring the data type first.
+In Python you can use variables to store different types of information.
+In Python you can use strings to store and work with text.
+In Python you can use integers and floats to work with numbers.
+In Python you can use lists to store multiple items in one variable.
+In Python you can use tuples when you do not want the values to change.
+In Python you can use dictionaries to store information as key-value pairs.
+In Python you can use for loops to repeat code over a collection of items.
+In Python you can use while loops to repeat code while a condition is true.
+In Python you can use if, elif, and else statements to control what your program does.
+In Python you can use True and False values to control program logic.
+In Python you can create functions to separate code into reusable pieces.
+In Python you can pass information into functions using parameters.
+In Python you can return information from a function back to the rest of the program.
+In Python you can use input() to collect information from the user.
+In Python you can validate user input before storing or using it.
+In Python you can use regular expressions to check patterns such as phone numbers and email addresses.
+In Python you can use try and except to handle errors without crashing the entire program.
+In Python you can use Object-Oriented Programming to organize code into classes and objects.
+In Python you can create classes to model real-world objects and their behaviors.
+In Python you can use __init__() to initialize attributes when an object is created.
+In Python you can use self to work with attributes and methods that belong to an object.
+In Python you can use inheritance to create a class based on another class.
+In Python you can use modules to separate a larger program into multiple files.
+In Python you can import classes, functions, or entire modules into another file.
+In Python you can use aliases to give imported modules or classes shorter names.
+In Python you can use the Python Standard Library for tools that are already included with Python.
