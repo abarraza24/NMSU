@@ -1,7 +1,30 @@
 {% extends "learning_logs/base.html" %}
 
 {% block content %}
-    <p>Topic: {{topic.text}}</p>
 
-    <p>This page shows the selected Learning Log topic.</p>
+  <div style="max-width: 700px; margin: 40px auto; font-family: Arial, sans-serif;">
+
+    <h1>Topic: {{ topic }}</h1>
+
+    <h2>Entries</h2>
+
+    <ul>
+      {% for entry in entries %}
+        <li style="margin-bottom: 25px;">
+          <p>
+            <strong>{{ entry.date_added|date:'M d, Y H:i' }}</strong>
+          </p>
+
+          <p>
+            {{ entry.text|linebreaks }}
+          </p>
+        </li>
+
+      {% empty %}
+        <li>There are no entries for this topic yet.</li>
+      {% endfor %}
+    </ul>
+
+  </div>
+
 {% endblock content %}
